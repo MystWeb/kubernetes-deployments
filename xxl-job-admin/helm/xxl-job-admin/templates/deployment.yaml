@@ -37,14 +37,23 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: http
+          livenessProbe:
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            periodSeconds: 10
+            failureThreshold: 2
+            httpGet:
+              path: /xxl-job-admin
+              #path: /health
+              port: http
+          readinessProbe:
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            periodSeconds: 10
+            failureThreshold: 2
+            httpGet:
+              path: /xxl-job-admin
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           envFrom:

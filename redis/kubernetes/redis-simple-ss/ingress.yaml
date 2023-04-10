@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app.kubernetes.io/instance: redis
+    app.kubernetes.io/name: redis-simple-ss
+  name: redis-simple-ss
+  namespace: redis
+spec:
+  rules:
+    - host: redis.simple.ss
+      http:
+        paths:
+          - backend:
+              service:
+                name: redis-simple-ss
+                port:
+                  number: 6379
+            path: /
+            pathType: ImplementationSpecific

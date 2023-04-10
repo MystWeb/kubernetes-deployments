@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-simple-ss-configmap
+  namespace: redis
+data:
+  redis.conf: |-
+    ## 监听端口
+    port 6379
+    ## 密码认证
+    requirepass proaim@2013
+    ## 设置所有主机都可以连接到redis
+    bind 0.0.0.0
+    ## RDB保存机制（Redis 7）
+    save 900 1 300 10 60 10000
+    ## 开启AOF
+    appendonly yes
