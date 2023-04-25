@@ -101,7 +101,16 @@ metadata:
 rules:
   - apiGroups: [ "" ]
     resources: [ "pod", "pods/log", "pods/status", "pods/exec" ]
-    verbs: [ "get", "list", "watch", "create", "update", "patch" ]
+    verbs: [ "get", "list", "watch", "update", "patch" ]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: deployments-edit
+rules:
+  - apiGroups: [ "apps" ]
+    resources: [ "deployments", "deployments/scale" ]
+    verbs: [ "get", "update", "patch" ]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -129,6 +138,20 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
+  name: devops-dev01-deployments-edit-binding
+  namespace: devops-web-dev01
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: deployments-edit
+subjects:
+  - kind: ServiceAccount
+    name: devops-dev01
+    namespace: kube-users
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
   name: devops-dev01-pod-edit-binding
   namespace: devops-web-test01
 roleRef:
@@ -137,5 +160,5 @@ roleRef:
   name: pod-edit
 subjects:
   - kind: ServiceAccount
-    name: devops-dev01
+    name: devops-test01
     namespace: kube-users
