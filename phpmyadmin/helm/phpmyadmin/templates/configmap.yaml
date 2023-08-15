@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-configmap
+data:
+  TZ: "Asia/Shanghai"
+  PMA_HOST: {{ .Values.PMA_HOST }}
+  PMA_ABSOLUTE_URI: {{ .Values.PMA_ABSOLUTE_URI }}
