@@ -1,6 +1,6 @@
 replicas: 1
 image: "docker.io/library/kibana"
-imageTag: "8.5.1"
+imageTag: "8.5.3"
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx

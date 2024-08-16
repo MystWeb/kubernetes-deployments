@@ -2,7 +2,7 @@ image:
   repository: docker.io/fluent/fluent-bit
   # Overrides the image tag whose default is {{ .Chart.AppVersion }}
   # Set to "-" to not use the default value
-  tag: 3.1
+  tag: 3.1-debug
   pullPolicy: IfNotPresent
 testFramework:
   enabled: true

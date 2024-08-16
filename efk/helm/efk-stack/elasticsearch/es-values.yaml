@@ -1,7 +1,7 @@
 replicas: 1
 minimumMasterNodes: 1
 image: "docker.io/library/elasticsearch"
-imageTag: "8.5.1"
+imageTag: "8.5.3"
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
